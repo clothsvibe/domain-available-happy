@@ -29,11 +29,13 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const { name, email, budget, message }: InquiryRequest = await req.json();
 
+    console.log("Received inquiry:", { name, email, budget, message });
+
     // Store inquiry in Supabase
     const supabase = createClient(supabaseUrl, supabaseKey);
     const { data, error } = await supabase
       .from("inquiries")
-      .insert([{ name, email, budget, message }]);
+      .insert({ name, email, budget, message });
 
     if (error) {
       console.error("Error storing inquiry:", error);

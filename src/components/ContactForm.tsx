@@ -44,18 +44,8 @@ const ContactForm: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      // First, try to insert directly using Supabase client
-      const { error: insertError } = await supabase
-        .from('inquiries')
-        .insert([data]);
-      
-      if (insertError) {
-        console.error("Error submitting inquiry to database:", insertError);
-        // If direct insert fails, we'll still try the edge function
-      }
-      
       // Call the edge function to handle email sending
-      const response = await fetch('/api/send-inquiry-email', {
+      const response = await fetch('https://gmhhtubytyzbzybgzggm.supabase.co/functions/v1/send-inquiry-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
