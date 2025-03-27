@@ -14,7 +14,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import AnimatedButton from './AnimatedButton';
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -42,16 +43,47 @@ const ContactForm: React.FC = () => {
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "Inquiry Sent",
-      description: "Thank you for your interest. We'll get back to you soon.",
-    });
-    
-    form.reset();
-    setIsSubmitting(false);
+    try {
+      // First, try to insert directly using Supabase client
+      const { error: insertError } = await supabase
+        .from('inquiries')
+        .insert([data]);
+      
+      if (insertError) {
+        console.error("Error submitting inquiry to database:", insertError);
+        // If direct insert fails, we'll still try the edge function
+      }
+      
+      // Call the edge function to handle email sending
+      const response = await fetch('/api/send-inquiry-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to submit inquiry');
+      }
+      
+      toast({
+        title: "Inquiry Sent",
+        description: "Thank you for your interest. We'll get back to you soon.",
+      });
+      
+      form.reset();
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast({
+        title: "Submission Error",
+        description: "There was a problem sending your inquiry. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
