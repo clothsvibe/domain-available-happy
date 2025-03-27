@@ -6,13 +6,15 @@ import DomainCard from '@/components/DomainCard';
 import ContactForm from '@/components/ContactForm';
 import FloatingElements from '@/components/FloatingElements';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { Mail } from 'lucide-react';
+import { Mail, MessageSquare } from 'lucide-react';
 
 const Index = () => {
   const isMobile = useIsMobile();
   const [isLoaded, setIsLoaded] = useState(false);
   const domain = "mamadrop.ma";
   const email = "sale@mamadrop.ma";
+  const whatsappNumber = "+447308658080";
+  const whatsappLink = `https://wa.me/${whatsappNumber.replace(/\+/g, '')}`;
 
   useEffect(() => {
     // Add a small delay for the initial animation
@@ -55,15 +57,26 @@ const Index = () => {
                 Interested in this domain?
               </h2>
               <p className="text-muted-foreground font-sans">
-                Please use the form below or contact us directly at:
+                Please use the form below or contact us directly:
               </p>
-              <a 
-                href={`mailto:${email}`} 
-                className="mt-3 inline-flex items-center text-primary hover:text-primary/80 transition-colors group font-sans"
-              >
-                <Mail className="mr-2 h-4 w-4 group-hover:translate-x-[-2px] transition-transform" />
-                {email}
-              </a>
+              <div className="mt-4 flex flex-col md:flex-row items-center justify-center gap-4">
+                <a 
+                  href={`mailto:${email}`} 
+                  className="inline-flex items-center text-primary hover:text-primary/80 transition-colors group font-sans"
+                >
+                  <Mail className="mr-2 h-4 w-4 group-hover:translate-x-[-2px] transition-transform" />
+                  {email}
+                </a>
+                <a 
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer" 
+                  className="inline-flex items-center text-green-500 hover:text-green-600 transition-colors group font-sans"
+                >
+                  <MessageSquare className="mr-2 h-4 w-4 group-hover:translate-x-[-2px] transition-transform" />
+                  {whatsappNumber}
+                </a>
+              </div>
             </div>
             
             <Separator className="my-6 bg-primary/20" />
