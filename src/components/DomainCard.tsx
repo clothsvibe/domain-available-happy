@@ -16,12 +16,12 @@ const DomainCard: React.FC<DomainCardProps> = ({ domain, className }) => {
       className
     )}>
       <CardContent className="p-6 flex flex-col items-center">
-        <Badge className="mb-3 bg-primary/10 text-primary hover:bg-primary/20 transition-colors">Premium Domain</Badge>
+        <Badge className="mb-3 bg-primary/90 text-black hover:bg-primary/100 transition-colors font-semibold">Premium Domain</Badge>
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-semibold text-center tracking-tight mb-2">
           {domain}
         </h2>
-        <div className="w-20 h-1 bg-gradient-to-r from-primary/50 to-blue-400/50 rounded-full mt-2 mb-4"></div>
-        <div className="text-center text-muted-foreground mt-2">
+        <div className="w-20 h-1 bg-gradient-to-r from-primary to-amber-500 rounded-full mt-2 mb-4"></div>
+        <div className="text-center text-muted-foreground mt-2 font-sans">
           This premium domain is available for purchase.
         </div>
       </CardContent>

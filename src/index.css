@@ -5,65 +5,65 @@
 
 @layer base {
   :root {
-    --background: 210 33% 99%;
-    --foreground: 220 30% 10%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 30% 10%;
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 30% 10%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 220 75% 55%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 24 100% 50%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 220 20% 96%;
-    --secondary-foreground: 222 30% 10%;
+    --secondary: 0 0% 9%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 210 20% 96%;
-    --muted-foreground: 220 15% 50%;
+    --muted: 0, 0%, 15%;
+    --muted-foreground: 0 0% 70%;
 
-    --accent: 220 20% 96%;
-    --accent-foreground: 222 30% 10%;
+    --accent: 24 100% 50%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 220 15% 92%;
-    --input: 220 15% 92%;
-    --ring: 222 30% 70%;
+    --border: 24 100% 50%;
+    --input: 0 0% 20%;
+    --ring: 24 100% 50%;
 
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 222 30% 5%;
-    --foreground: 210 20% 98%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 98%;
 
-    --card: 222 30% 7%;
-    --card-foreground: 210 20% 98%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 222 30% 5%;
-    --popover-foreground: 210 20% 98%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 220 75% 60%;
-    --primary-foreground: 210 20% 98%;
+    --primary: 24 100% 50%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 220 20% 15%;
-    --secondary-foreground: 210 20% 98%;
+    --secondary: 0 0% 9%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 220 20% 15%;
-    --muted-foreground: 220 20% 70%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
 
-    --accent: 220 20% 15%;
-    --accent-foreground: 210 20% 98%;
+    --accent: 24 100% 50%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 70% 50%;
-    --destructive-foreground: 210 20% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 220 20% 20%;
-    --input: 220 20% 20%;
-    --ring: 220 65% 60%;
+    --border: 24 100% 50%;
+    --input: 0 0% 20%;
+    --ring: 24 100% 50%;
   }
 }
 
@@ -75,6 +75,11 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+    background-image: url('/lovable-uploads/450f4fdd-62f7-4e28-8e10-2a101f0432a7.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
   
   /* Custom scrollbar */
@@ -97,19 +102,60 @@
 }
 
 /* Import fonts */
-@import url('https://rsms.me/inter/inter.css');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 @layer components {
   .glass-panel {
-    @apply bg-white/80 dark:bg-black/40 backdrop-blur-md border border-white/20 dark:border-white/10;
+    @apply bg-black/80 backdrop-blur-md border border-primary/20;
   }
   
   .glass-input {
-    @apply bg-white/50 dark:bg-black/30 backdrop-blur-sm border border-white/30 dark:border-white/10 
+    @apply bg-black/60 backdrop-blur-sm border border-primary/30
            focus:ring-2 focus:ring-primary/30 transition-all duration-200;
   }
   
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-amber-500;
   }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.7s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.7s ease-out;
 }

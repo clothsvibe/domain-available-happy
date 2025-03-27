@@ -23,7 +23,8 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
       size={size}
       className={cn(
         "relative overflow-hidden group transition-all duration-300",
-        "before:absolute before:inset-0 before:bg-primary/10 before:translate-x-[-100%] before:hover:translate-x-0 before:transition-transform before:duration-300",
+        "before:absolute before:inset-0 before:bg-primary/20 before:translate-x-[-100%] before:hover:translate-x-0 before:transition-transform before:duration-300",
+        "font-sans font-medium tracking-wide",
         className
       )}
       {...props}

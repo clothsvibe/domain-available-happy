@@ -24,20 +24,20 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen w-full overflow-hidden bg-gradient-to-b from-background to-background">
+    <div className="min-h-screen w-full overflow-hidden">
       <FloatingElements />
       
       <div className="container px-4 sm:px-6 py-12 md:py-24 mx-auto relative z-10 flex flex-col items-center">
         {/* Header */}
         <div className={`text-center mb-12 md:mb-16 transition-opacity duration-700 ease-out ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="inline-block mb-3 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm animate-fade-in">
+          <div className="inline-block mb-3 px-3 py-1 bg-primary/90 text-black rounded-full text-sm animate-fade-in font-sans font-medium">
             Domain for Sale
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-4 animate-fade-in-up">
             Premium Domain<br className="md:hidden" /> 
             <span className="text-gradient">Available</span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto animate-fade-in-up font-sans" style={{ animationDelay: '0.1s' }}>
             Secure this exceptional domain name for your business or project.
           </p>
         </div>
@@ -54,26 +54,26 @@ const Index = () => {
               <h2 className="text-2xl md:text-3xl font-display font-semibold mb-4">
                 Interested in this domain?
               </h2>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground font-sans">
                 Please use the form below or contact us directly at:
               </p>
               <a 
                 href={`mailto:${email}`} 
-                className="mt-3 inline-flex items-center text-primary hover:text-primary/80 transition-colors group"
+                className="mt-3 inline-flex items-center text-primary hover:text-primary/80 transition-colors group font-sans"
               >
                 <Mail className="mr-2 h-4 w-4 group-hover:translate-x-[-2px] transition-transform" />
                 {email}
               </a>
             </div>
             
-            <Separator className="my-6 bg-primary/10" />
+            <Separator className="my-6 bg-primary/20" />
             
             <ContactForm />
           </CardContent>
         </Card>
         
         {/* Footer */}
-        <footer className="mt-16 text-center text-sm text-muted-foreground">
+        <footer className="mt-16 text-center text-sm text-muted-foreground font-sans">
           <p>&copy; {new Date().getFullYear()} • All Rights Reserved</p>
         </footer>
       </div>
